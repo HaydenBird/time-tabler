@@ -1,0 +1,47 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
+</head>
+<body>
+
+  <div class="ui raised very padded text container segment">
+    <div class="ui fluid input">
+      <input type="text" placeholder="Enter the server you want to connect to">
+    </div>
+  </div>
+
+  <div class="ui raised very padded text container segment">
+    <h2 class="ui center aligned header">Please select a group.</h2>
+    <p>
+      <div class="ui search">
+        <div class="ui fluid icon input">
+          <input class="prompt" type="text" placeholder="Search for a group">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div>
+  </div>
+  <script
+  			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  			  crossorigin="anonymous"></script>
+<script src="/semantic/dist/semantic.min.js"> </script>
+<script type="text/javascript">
+  /* Define API endpoints once globally */
+  $.fn.api.settings.api = {
+    'search'        : '/search.json?query={query}'
+  };
+  $('.ui.search')
+  .search({
+    apiSettings: {
+      url: 'http://localhost:8080/search?query={query}'
+    },
+    fields: {
+      results : 'items',
+      title   : 'name',
+      url     : 'html_url'
+    },
+    minCharacters : 3
+  })
+;
+</script>
+</body>
